@@ -1,0 +1,664 @@
+
+分配公共符号
+公共符号            大小              文件
+
+k_thread_block_list
+                    0xc               thread.o
+k_gdt               0x400             global.o
+k_slab_usage        0x10              slab.o
+k_thread_ready_list
+                    0xc               thread.o
+k_tss               0x68              thread.o
+k_idt               0x800             global.o
+
+Discarded input sections
+
+ .note.GNU-stack
+                0x0000000000000000        0x0 global.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 main.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 stdlib.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 stdio.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 string.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 vsprintf.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 console.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 i8259a.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 interrupt.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 i8042.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 io.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 slab.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 thread.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 sched.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 syscall.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 ki.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 mm.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 keyboard.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 event.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 semaphore.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 ui.o
+
+内存配置
+
+名称           来源             长度             属性
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+段 .text 的地址设置为 0x10400
+LOAD init.o
+LOAD irq.o
+LOAD restart.o
+LOAD global.o
+LOAD main.o
+LOAD stdlib.o
+LOAD stdio.o
+LOAD string.o
+LOAD vsprintf.o
+LOAD console.o
+LOAD i8259a.o
+LOAD interrupt.o
+LOAD i8042.o
+LOAD io.o
+LOAD slab.o
+LOAD thread.o
+LOAD sched.o
+LOAD syscall.o
+LOAD ki.o
+LOAD mm.o
+LOAD keyboard.o
+LOAD event.o
+LOAD semaphore.o
+LOAD ui.o
+                0x0000000008048000                PROVIDE (__executable_start, 0x8048000)
+                0x0000000008048094                . = (0x8048000 + SIZEOF_HEADERS)
+
+.interp
+ *(.interp)
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.hash
+ *(.hash)
+
+.gnu.hash
+ *(.gnu.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.dyn        0x0000000008048094        0x0
+ *(.rel.init)
+ *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
+ .rel.text      0x0000000000000000        0x0 init.o
+ .rel.text.startup
+                0x0000000000000000        0x0 init.o
+ *(.rel.fini)
+ *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
+ *(.rel.data.rel.ro .rel.data.rel.ro.* .rel.gnu.linkonce.d.rel.ro.*)
+ *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
+ .rel.data      0x0000000000000000        0x0 init.o
+ *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
+ *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
+ *(.rel.ctors)
+ *(.rel.dtors)
+ *(.rel.got)
+ *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
+ *(.rel.ifunc)
+
+.rel.plt        0x0000000008048094        0x0
+ *(.rel.plt)
+                0x0000000008048094                PROVIDE (__rel_iplt_start, .)
+ *(.rel.iplt)
+ .rel.iplt      0x0000000000000000        0x0 init.o
+                0x0000000008048094                PROVIDE (__rel_iplt_end, .)
+
+.init
+ *(SORT(.init))
+
+.plt            0x00000000080480a0        0x0
+ *(.plt)
+ *(.iplt)
+ .iplt          0x0000000000000000        0x0 init.o
+
+.text           0x0000000000010400     0x4843
+ *(.text.unlikely .text.*_unlikely)
+ *(.text.exit .text.exit.*)
+ *(.text.startup .text.startup.*)
+ .text.startup  0x0000000000010400       0x61 main.o
+                0x0000000000010400                main
+ *(.text.hot .text.hot.*)
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ *fill*         0x0000000000010461        0xf 
+ .text          0x0000000000010470       0x72 init.o
+                0x0000000000010470                _start
+ *fill*         0x00000000000104e2        0xe 
+ .text          0x00000000000104f0      0x1f4 irq.o
+                0x0000000000010522                divide_exception
+                0x0000000000010534                debug_exception
+                0x0000000000010546                nmi
+                0x0000000000010558                break_point
+                0x000000000001056a                overflow_exception
+                0x000000000001057c                bounds_exception
+                0x000000000001058e                unknown_instruction
+                0x00000000000105a0                device_unavailable
+                0x00000000000105b2                double_fault
+                0x00000000000105d1                invalid_tss
+                0x00000000000105f0                segment_fault
+                0x000000000001060f                stack_fault
+                0x000000000001062e                generic_protection
+                0x000000000001064d                page_fault
+                0x000000000001066c                math_fault
+                0x000000000001068b                irq_sys_tick
+                0x00000000000106ad                irq_keyboard
+                0x00000000000106cf                irq_syscall
+ *fill*         0x00000000000106e4        0xc 
+ .text          0x00000000000106f0       0x31 restart.o
+                0x00000000000106f0                sched_start
+                0x00000000000106f0                restart
+                0x0000000000010710                restart_nested
+ *fill*         0x0000000000010721        0xf 
+ .text          0x0000000000010730       0xfa global.o
+                0x0000000000010730                get_physical_addr
+                0x0000000000010760                init_idt_item
+                0x00000000000107b0                init_gdt_ldt_item
+ *fill*         0x000000000001082a        0x6 
+ .text          0x0000000000010830        0x3 main.o
+ *fill*         0x0000000000010833        0xd 
+ .text          0x0000000000010840       0xf8 stdlib.o
+                0x0000000000010840                rand
+                0x0000000000010860                srand
+                0x0000000000010870                memset
+                0x0000000000010890                memcpy
+                0x00000000000108d0                memmove
+ *fill*         0x0000000000010938        0x8 
+ .text          0x0000000000010940       0xdf stdio.o
+                0x0000000000010940                setattr
+                0x0000000000010960                setxy
+                0x0000000000010990                puts
+                0x00000000000109d0                printf
+ *fill*         0x0000000000010a1f        0x1 
+ .text          0x0000000000010a20       0x93 string.o
+                0x0000000000010a20                is_digit
+                0x0000000000010a40                strlen
+                0x0000000000010a60                strcpy
+                0x0000000000010a90                sprintf
+ *fill*         0x0000000000010ab3        0xd 
+ .text          0x0000000000010ac0      0xa49 vsprintf.o
+                0x0000000000010ee0                vsprintf
+ *fill*         0x0000000000011509        0x7 
+ .text          0x0000000000011510      0x5d2 console.o
+                0x0000000000011510                k_setattr
+                0x0000000000011520                k_setxy
+                0x0000000000011560                k_cls
+                0x00000000000115b0                k_getch
+                0x00000000000115f0                k_putchar
+                0x00000000000117c0                k_gets
+                0x0000000000011a00                k_getche
+                0x0000000000011a50                k_puts
+                0x0000000000011a90                k_printf
+ *fill*         0x0000000000011ae2        0xe 
+ .text          0x0000000000011af0       0x99 i8259a.o
+                0x0000000000011af0                init_i8259a
+                0x0000000000011b30                i8259_enable
+                0x0000000000011b60                i8259_disable
+ *fill*         0x0000000000011b89        0x7 
+ .text          0x0000000000011b90      0x157 interrupt.o
+                0x0000000000011b90                init_interrupt
+                0x0000000000011c00                generic_interrupt_handler
+ *fill*         0x0000000000011ce7        0x9 
+ .text          0x0000000000011cf0       0x11 i8042.o
+                0x0000000000011cf0                init_i8042
+ *fill*         0x0000000000011d01        0x3 
+ .text          0x0000000000011d04        0x0 io.o
+ *fill*         0x0000000000011d04        0xc 
+ .text          0x0000000000011d10      0x262 slab.o
+                0x0000000000011d10                init_slab
+                0x0000000000011db0                slab_allocate
+                0x0000000000011e50                slab_free
+                0x0000000000011f00                slab_get_index
+ *fill*         0x0000000000011f72        0xe 
+ .text          0x0000000000011f80      0x662 thread.o
+                0x0000000000012180                thread_exit
+                0x00000000000121d0                init_thread
+                0x0000000000012280                thread_yield
+                0x00000000000122a0                thread_sleep
+                0x00000000000122d0                k_thread_block
+                0x0000000000012380                k_thread_ready
+                0x0000000000012430                k_thread_kill
+                0x0000000000012550                k_thread_new
+                0x00000000000125a0                k_thread_new_3
+ *fill*         0x00000000000125e2        0xe 
+ .text          0x00000000000125f0      0x2ad sched.o
+                0x00000000000125f0                sched_next
+                0x0000000000012630                sched_switch
+                0x0000000000012880                interrupt_sys_tick
+ *fill*         0x000000000001289d        0x3 
+ .text          0x00000000000128a0      0x1ea syscall.o
+                0x0000000000012a60                interrupt_syscall
+ *fill*         0x0000000000012a8a        0x6 
+ .text          0x0000000000012a90       0x48 ki.o
+                0x0000000000012a90                ki_wait
+                0x0000000000012aa0                ki_exit
+                0x0000000000012ab0                ki_puts
+                0x0000000000012ac0                ki_setattr
+                0x0000000000012ad0                ki_setxy
+ *fill*         0x0000000000012ad8        0x8 
+ .text          0x0000000000012ae0       0x67 mm.o
+                0x0000000000012ae0                init_mm
+ *fill*         0x0000000000012b47        0x9 
+ .text          0x0000000000012b50      0x3aa keyboard.o
+                0x0000000000012d80                init_keyboard
+                0x0000000000012de0                keyboard_read_key
+                0x0000000000012e40                keyboard_read_modifier
+                0x0000000000012e70                interrupt_keyboard
+ *fill*         0x0000000000012efa        0x6 
+ .text          0x0000000000012f00      0x114 event.o
+                0x0000000000012f00                k_event_new
+                0x0000000000012f20                k_event_free
+                0x0000000000012f60                k_event_signal
+                0x0000000000012f70                k_event_wait
+ *fill*         0x0000000000013014        0xc 
+ .text          0x0000000000013020      0x15c semaphore.o
+                0x0000000000013020                k_sem_new
+                0x0000000000013050                k_sem_free
+                0x00000000000130a0                k_sem_none
+                0x00000000000130b0                k_sem_signal
+                0x00000000000130d0                k_sem_wait
+ *fill*         0x000000000001317c        0x4 
+ .text          0x0000000000013180     0x1ac3 ui.o
+                0x0000000000014c10                ui_startup
+ *(.gnu.warning)
+
+.fini
+ *(SORT(.fini))
+                0x0000000000014c43                PROVIDE (__etext, .)
+                0x0000000000014c43                PROVIDE (_etext, .)
+                0x0000000000014c43                PROVIDE (etext, .)
+
+.rodata         0x0000000000014c60      0x84d
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata.str1.4
+                0x0000000000014c60       0x4d vsprintf.o
+ *fill*         0x0000000000014cad        0x3 
+ .rodata        0x0000000000014cb0       0xc8 vsprintf.o
+ .rodata        0x0000000000014d78        0x4 console.o
+                0x0000000000014d78                k_video_mem
+ .rodata.str1.1
+                0x0000000000014d7c      0x1f1 interrupt.o
+                                        0x1f3 (size before relaxing)
+ *fill*         0x0000000000014f6d        0x3 
+ .rodata.str1.4
+                0x0000000000014f70       0x2b interrupt.o
+ *fill*         0x0000000000014f9b        0x5 
+ .rodata        0x0000000000014fa0       0xcc interrupt.o
+ .rodata        0x000000000001506c       0x14 syscall.o
+ .rodata.str1.1
+                0x0000000000015080       0x1e mm.o
+ *fill*         0x000000000001509e        0x2 
+ .rodata        0x00000000000150a0      0x140 keyboard.o
+ .rodata.str1.4
+                0x00000000000151e0       0x70 ui.o
+                                         0x6f (size before relaxing)
+ .rodata        0x0000000000015250      0x164 ui.o
+ .rodata.str1.1
+                0x00000000000153b4       0xf9 ui.o
+                                         0xfc (size before relaxing)
+
+.rodata1
+ *(.rodata1)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame       0x00000000000154b0      0xadc
+ *(.eh_frame)
+ .eh_frame      0x00000000000154b0       0x64 global.o
+ .eh_frame      0x0000000000015514       0x34 main.o
+                                         0x4c (size before relaxing)
+ .eh_frame      0x0000000000015548       0x94 stdlib.o
+                                         0xac (size before relaxing)
+ .eh_frame      0x00000000000155dc       0x60 stdio.o
+                                         0x78 (size before relaxing)
+ .eh_frame      0x000000000001563c       0x60 string.o
+                                         0x78 (size before relaxing)
+ .eh_frame      0x000000000001569c       0x98 vsprintf.o
+                                         0xb0 (size before relaxing)
+ .eh_frame      0x0000000000015734      0x174 console.o
+                                        0x18c (size before relaxing)
+ .eh_frame      0x00000000000158a8       0x3c i8259a.o
+                                         0x54 (size before relaxing)
+ .eh_frame      0x00000000000158e4       0x60 interrupt.o
+                                         0x78 (size before relaxing)
+ .eh_frame      0x0000000000015944       0x14 i8042.o
+                                         0x2c (size before relaxing)
+ .eh_frame      0x0000000000015958       0x64 slab.o
+                                         0x7c (size before relaxing)
+ .eh_frame      0x00000000000159bc      0x164 thread.o
+                                        0x17c (size before relaxing)
+ .eh_frame      0x0000000000015b20       0x7c sched.o
+                                         0x94 (size before relaxing)
+ .eh_frame      0x0000000000015b9c       0xa4 syscall.o
+                                         0xbc (size before relaxing)
+ .eh_frame      0x0000000000015c40       0x64 ki.o
+                                         0x7c (size before relaxing)
+ .eh_frame      0x0000000000015ca4       0x24 mm.o
+                                         0x3c (size before relaxing)
+ .eh_frame      0x0000000000015cc8       0x80 keyboard.o
+                                         0x98 (size before relaxing)
+ .eh_frame      0x0000000000015d48       0x7c event.o
+                                         0x94 (size before relaxing)
+ .eh_frame      0x0000000000015dc4       0x98 semaphore.o
+                                         0xb0 (size before relaxing)
+ .eh_frame      0x0000000000015e5c      0x130 ui.o
+                                        0x148 (size before relaxing)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.exception_ranges
+ *(.exception_ranges .exception_ranges*)
+                0x0000000000015f8c                . = (ALIGN (0x1000) - ((0x1000 - .) & 0xfff))
+                0x0000000000016000                . = DATA_SEGMENT_ALIGN (0x1000, 0x1000)
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.exception_ranges
+ *(.exception_ranges .exception_ranges*)
+
+.tdata
+ *(.tdata .tdata.* .gnu.linkonce.td.*)
+
+.tbss
+ *(.tbss .tbss.* .gnu.linkonce.tb.*)
+ *(.tcommon)
+
+.preinit_array  0x0000000000016000        0x0
+                0x0000000000016000                PROVIDE (__preinit_array_start, .)
+ *(.preinit_array)
+                0x0000000000016000                PROVIDE (__preinit_array_end, .)
+
+.init_array     0x0000000000016000        0x0
+                0x0000000000016000                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*) SORT(.ctors.*))
+ *(.init_array)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .ctors)
+                0x0000000000016000                PROVIDE (__init_array_end, .)
+
+.fini_array     0x0000000000016000        0x0
+                0x0000000000016000                PROVIDE (__fini_array_start, .)
+ *(SORT(.fini_array.*) SORT(.dtors.*))
+ *(.fini_array)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .dtors)
+                0x0000000000016000                PROVIDE (__fini_array_end, .)
+
+.ctors
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *(.ctors)
+
+.dtors
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *(.dtors)
+
+.jcr
+ *(.jcr)
+
+.data.rel.ro
+ *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
+ *(.data.rel.ro .data.rel.ro.* .gnu.linkonce.d.rel.ro.*)
+
+.dynamic
+ *(.dynamic)
+
+.got
+ *(.got)
+ *(.igot)
+                0x0000000000016000                . = DATA_SEGMENT_RELRO_END (., (SIZEOF (.got.plt) >= 0xc)?0xc:0x0)
+
+.got.plt        0x0000000000016000        0x0
+ *(.got.plt)
+ *(.igot.plt)
+ .igot.plt      0x0000000000000000        0x0 init.o
+
+.data           0x0000000000016000       0x34
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x0000000000016000        0xc init.o
+ .data          0x000000000001600c        0x0 global.o
+ .data          0x000000000001600c        0x0 main.o
+ .data          0x000000000001600c        0x4 stdlib.o
+ .data          0x0000000000016010        0x0 stdio.o
+ .data          0x0000000000016010        0x0 string.o
+ .data          0x0000000000016010        0x0 vsprintf.o
+ .data          0x0000000000016010        0x1 console.o
+ *fill*         0x0000000000016011        0x3 
+ .data          0x0000000000016014        0x0 i8259a.o
+ .data          0x0000000000016014        0x0 interrupt.o
+ .data          0x0000000000016014        0x0 i8042.o
+ .data          0x0000000000016014        0x0 io.o
+ .data          0x0000000000016014        0x0 slab.o
+ .data          0x0000000000016014        0xc thread.o
+                0x0000000000016014                k_thread_queue
+ .data          0x0000000000016020        0x0 sched.o
+ .data          0x0000000000016020        0x0 syscall.o
+ .data          0x0000000000016020        0x0 ki.o
+ .data          0x0000000000016020        0x8 mm.o
+                0x0000000000016020                k_pde
+                0x0000000000016024                k_pte
+ .data          0x0000000000016028        0x8 keyboard.o
+ .data          0x0000000000016030        0x0 event.o
+ .data          0x0000000000016030        0x0 semaphore.o
+ .data          0x0000000000016030        0x4 ui.o
+
+.data1
+ *(.data1)
+                0x0000000000016034                _edata = .
+                0x0000000000016034                PROVIDE (edata, .)
+                0x0000000000016034                . = .
+                0x0000000000016034                __bss_start = .
+
+.bss            0x0000000000016040   0x2c03a8
+ *(.dynbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x0000000000016040      0x800 init.o
+                0x0000000000016840                K_STACK_TOP
+ .bss           0x0000000000016840        0x0 global.o
+ .bss           0x0000000000016840        0x0 main.o
+ .bss           0x0000000000016840        0x0 stdlib.o
+ .bss           0x0000000000016840      0x400 stdio.o
+ .bss           0x0000000000016c40        0x0 string.o
+ .bss           0x0000000000016c40        0x0 vsprintf.o
+ .bss           0x0000000000016c40      0x420 console.o
+ .bss           0x0000000000017060        0x2 i8259a.o
+ *fill*         0x0000000000017062        0x2 
+ .bss           0x0000000000017064        0x8 interrupt.o
+                0x0000000000017064                k_int_nested
+                0x0000000000017068                k_sys_tick
+ .bss           0x000000000001706c        0x0 i8042.o
+ .bss           0x000000000001706c        0x0 io.o
+ *fill*         0x000000000001706c       0x14 
+ .bss           0x0000000000017080   0x2bd400 slab.o
+ .bss           0x00000000002d4480        0xc thread.o
+                0x00000000002d4480                k_current_thread
+                0x00000000002d4484                k_thread_count
+ .bss           0x00000000002d448c        0x0 sched.o
+ .bss           0x00000000002d448c        0x0 syscall.o
+ .bss           0x00000000002d448c        0x0 ki.o
+ .bss           0x00000000002d448c        0x4 mm.o
+                0x00000000002d448c                k_ram_size
+ *fill*         0x00000000002d4490       0x10 
+ .bss           0x00000000002d44a0      0x249 keyboard.o
+ *fill*         0x00000000002d46e9        0x3 
+ .bss           0x00000000002d46ec        0x0 event.o
+ .bss           0x00000000002d46ec        0x0 semaphore.o
+ *fill*         0x00000000002d46ec       0x14 
+ .bss           0x00000000002d4700     0x1040 ui.o
+ *(COMMON)
+ COMMON         0x00000000002d5740      0xc00 global.o
+                0x00000000002d5740                k_gdt
+                0x00000000002d5b40                k_idt
+ COMMON         0x00000000002d6340       0x10 slab.o
+                0x00000000002d6340                k_slab_usage
+ *fill*         0x00000000002d6350       0x10 
+ COMMON         0x00000000002d6360       0x88 thread.o
+                0x00000000002d6360                k_thread_block_list
+                0x00000000002d636c                k_thread_ready_list
+                0x00000000002d6380                k_tss
+                0x00000000002d63e8                . = ALIGN ((. != 0x0)?0x4:0x1)
+                0x00000000002d63e8                . = ALIGN (0x4)
+                0x00000000002d63e8                . = ALIGN (0x4)
+                0x00000000002d63e8                _end = .
+                0x00000000002d63e8                PROVIDE (end, .)
+                0x00000000002d63e8                . = DATA_SEGMENT_END (.)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x0000000000000000       0x2a
+ *(.comment)
+ .comment       0x0000000000000000       0x2a global.o
+                                         0x2b (size before relaxing)
+ .comment       0x0000000000000000       0x2b main.o
+ .comment       0x0000000000000000       0x2b stdlib.o
+ .comment       0x0000000000000000       0x2b stdio.o
+ .comment       0x0000000000000000       0x2b string.o
+ .comment       0x0000000000000000       0x2b vsprintf.o
+ .comment       0x0000000000000000       0x2b console.o
+ .comment       0x0000000000000000       0x2b i8259a.o
+ .comment       0x0000000000000000       0x2b interrupt.o
+ .comment       0x0000000000000000       0x2b i8042.o
+ .comment       0x0000000000000000       0x2b io.o
+ .comment       0x0000000000000000       0x2b slab.o
+ .comment       0x0000000000000000       0x2b thread.o
+ .comment       0x0000000000000000       0x2b sched.o
+ .comment       0x0000000000000000       0x2b syscall.o
+ .comment       0x0000000000000000       0x2b ki.o
+ .comment       0x0000000000000000       0x2b mm.o
+ .comment       0x0000000000000000       0x2b keyboard.o
+ .comment       0x0000000000000000       0x2b event.o
+ .comment       0x0000000000000000       0x2b semaphore.o
+ .comment       0x0000000000000000       0x2b ui.o
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info .gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges
+ *(.debug_ranges)
+
+.debug_macro
+ *(.debug_macro)
+
+.gnu.attributes
+ *(.gnu.attributes)
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+ *(.gnu.lto_*)
+OUTPUT(oskernel elf32-i386)
